@@ -41,10 +41,10 @@ export default function Login() {
               textAlign: "center",
             }}
           >
-            Let's Find
+            Курсовой проект
             <Text style={{ fontWeight: "bold" }}>
               {" "}
-              Профессиональная чистка и ремонт{" "}
+              Система заявок для уборки и ремонта{" "}
             </Text>
             Service
           </Text>

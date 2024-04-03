@@ -9,6 +9,7 @@ import BusinessListItem from './../BusinessListByCategoryScreen/BusinessListItem
 export default function BookingScreen() {
   const [bookingList, setBookingList] = useState([]);
   const { user } = useUser();
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     user && getUserBookings();
@@ -16,10 +17,12 @@ export default function BookingScreen() {
 
   /* Get user booking */
   const getUserBookings = () => {
+    setLoading(true)
     GlobalApi.getUserBookings(user.primaryEmailAddress.emailAddress).then(
       (resp) => {
         console.log(resp);
         setBookingList(resp.bookings);
+        setLoading(false)
       }
     );
   };
@@ -33,6 +36,8 @@ export default function BookingScreen() {
       <View>
         <FlatList
           data={bookingList}
+          onRefresh={() => getUserBookings()}
+          refreshing={loading}
           renderItem={({ item, index }) => (
             <BusinessListItem 
                 business={item?.businessList} 

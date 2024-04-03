@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, Image, StyleSheet, ScrollView, FlatList, SafeAreaView, Modal } from "react-native";
+import { View, Text, TouchableOpacity, Image, StyleSheet, ScrollView, FlatList, SafeAreaView, Modal, Linking } from "react-native";
 import React, { useEffect, useState } from "react";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { Ionicons } from '@expo/vector-icons';
@@ -15,6 +15,10 @@ export default function BusinessDetailsScreen() {
   const navigation = useNavigation();
 
   useEffect(() => {}, []);
+
+  const onMessageBtnClick = () => {
+    Linking.openURL('mailto:' + business?.email + '?subject= Зотел бы сделать заказ&body=Добрый день');
+  }
 
   return (
     business && (
@@ -81,7 +85,7 @@ export default function BusinessDetailsScreen() {
         <View
           style={{ display: "flex", flexDirection: "row", margin: 8, gap: 8 }}
         >
-          <TouchableOpacity style={styles.messagebtn}>
+          <TouchableOpacity style={styles.messagebtn} onPress={() => onMessageBtnClick()}>
             <Text
               style={{
                 textAlign: "center",
