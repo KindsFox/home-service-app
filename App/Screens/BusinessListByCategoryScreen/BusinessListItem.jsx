@@ -3,8 +3,9 @@ import React from "react";
 import Colors from "../../Utils/Colors";
 import { Entypo } from '@expo/vector-icons';
 import { useNavigation } from "@react-navigation/native";
+import { AntDesign } from '@expo/vector-icons';
 
-export default function BusinessListItem ({business}) {
+export default function BusinessListItem ({business, booking}) {
   const navigation = useNavigation();
 
     return (
@@ -29,13 +30,49 @@ export default function BusinessListItem ({business}) {
           <Text style={{ fontFamily: "outfit-bold", fontSize: 19 }}>
             {business.name}
           </Text>
-          <Text
-            style={{ fontFamily: "outfit", color: Colors.GRAY, fontSize: 16 }}
-          >
-            {" "}
-            <Entypo name="location-pin" size={24} color={Colors.PRIMARY} />{" "}
-            {business.adress}
-          </Text>
+
+          {!booking?.id ? (
+            <Text
+              style={{ fontFamily: "outfit", color: Colors.GRAY, fontSize: 16 }}
+            >
+              {" "}
+              <Entypo
+                name="location-pin"
+                size={24}
+                color={Colors.PRIMARY}
+              />{" "}
+              {business.adress}
+            </Text>
+          ) : (
+            <Text
+              style={[
+                {
+                  padding: 5,
+                  borderRadius: 5,
+                  fontSize: 14,
+                  alignSelf: "flex-start",
+                },
+                booking?.bookingStatus == "Canceled"
+                  ? { backgroundColor: Colors.LIGHT_RED, color: Colors.RED }
+                  : {
+                      color: Colors.PRIMARY,
+                      backgroundColor: Colors.PRIMARY_LIGHT,
+                    },
+              ]}
+            >
+              {" "}
+              {booking?.bookingStatus}
+            </Text>
+          )}
+
+          {booking?.id ? (
+            <Text
+              style={{ fontFamily: "outfit", color: Colors.GRAY, fontSize: 16 }}
+            >
+              <AntDesign name="calendar" size={24} color={Colors.PRIMARY} style={{marginRight: 15}} />
+              {booking.date} at {booking.time}
+            </Text>
+          ) : null}
         </View>
       </TouchableOpacity>
     );

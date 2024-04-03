@@ -44,7 +44,7 @@ export default function Login() {
             Let's Find
             <Text style={{ fontWeight: "bold" }}>
               {" "}
-              Professional Cleaning and repair{" "}
+              Профессиональная чистка и ремонт{" "}
             </Text>
             Service
           </Text>
@@ -57,8 +57,8 @@ export default function Login() {
               marginTop: 20,
             }}
           >
-            Best App to find services near you which deliver you a professional
-            service
+            Лучшее приложение для поиска мастеров, готовых предоставить вам профессиональную 
+            услугу
           </Text>
 
           <TouchableOpacity
@@ -72,7 +72,7 @@ export default function Login() {
                 color: Colors.PRIMARY,
               }}
             >
-              Lett's Get Started
+              Войти
             </Text>
           </TouchableOpacity>
         </View>
